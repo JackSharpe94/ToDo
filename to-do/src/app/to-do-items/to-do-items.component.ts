@@ -1,5 +1,7 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { VirtualTimeScheduler } from 'rxjs';
 import { ToDoItem } from 'src/models/ToDoItem.model';
+import { TodolistService } from '../services/todolist.service';
 
 @Component({
   selector: 'app-to-do-items',
@@ -9,18 +11,20 @@ import { ToDoItem } from 'src/models/ToDoItem.model';
 
 export class ToDoItemsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private toDoListService: TodolistService) { }
 
   items: ToDoItem[] = [];
   ngOnInit(): void {
   }
 
   onAdd() {
-    this.items.push(new ToDoItem(false));
+    this.toDoListService.addNewItem();
+    this.items = this.toDoListService.getToDoItems()
   }
 
-  onToDoDeleted(index: number) {
-    this.items.splice(index, 1)
+  onToDoDeleted(id: any) {
+    this.toDoListService.removeElement(id);
+    this.items = this.toDoListService.getToDoItems()
   }
 
 }

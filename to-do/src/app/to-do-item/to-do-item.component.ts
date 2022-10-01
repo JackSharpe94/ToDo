@@ -11,7 +11,10 @@ export class ToDoItemComponent implements OnInit {
 
   @Output() deleteToDo = new EventEmitter();
   @Input() index?: number
+  @Input() id: any = "";
 
+
+  isChecked?: boolean = false
   ngOnInit(): void {
   }
 
@@ -20,7 +23,13 @@ export class ToDoItemComponent implements OnInit {
   }
 
   onDelete() {
-    this.deleteToDo.emit(this.index)
+    console.log(this.id)
+    this.deleteToDo.emit(this.id)
+  }
+
+  onCheckboxChecked() {
+   this.isChecked = this.isChecked === false ? true : false;
+   console.log("is Checked:", this.isChecked)
   }
 
 }
