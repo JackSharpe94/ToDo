@@ -1,5 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
-import { VirtualTimeScheduler } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { ToDoItem } from 'src/models/ToDoItem.model';
 import { TodolistService } from '../services/todolist.service';
 
